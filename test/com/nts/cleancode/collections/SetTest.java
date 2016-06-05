@@ -10,9 +10,9 @@ import com.nts.cleancode.collections.List;
 import com.nts.cleancode.collections.Set;
 
 public class SetTest {
-	private Set empty;
+	private AbstractCollection empty;
 	private Set oneElement;
-	private Set manyElement;
+	private AbstractCollection manyElement;
 
 	@Before
 	public void setUp() {
@@ -63,7 +63,7 @@ public class SetTest {
 		assertEquals(3, manyElement.size());
 		manyElement.remove("sasha");
 		assertEquals(2, manyElement.size());
-		assertEquals("tracy", manyElement.getElementAt(1));
+		assertEquals("tracy", manyElement.get(1));
 	}
 
 	@Test
@@ -74,7 +74,7 @@ public class SetTest {
 
 	@Test
 	public void addAllWithList() {
-		List list = new List();
+		AbstractCollection list = new List();
 		list.add("dave");
 		oneElement.addAll(list);
 		assertEquals(2, oneElement.size());
@@ -82,7 +82,7 @@ public class SetTest {
 
 	@Test
 	public void addAllWithDuplicates() {
-		Set newSet = new Set();
+		AbstractCollection newSet = new Set();
 		newSet.add("josh");
 		manyElement.addAll(newSet);
 		assertEquals(2, manyElement.size());
@@ -90,7 +90,7 @@ public class SetTest {
 
 	@Test
 	public void addAllWithDuplicatesInList() {
-		List newList = new List();
+		AbstractCollection newList = new List();
 		newList.add("josh");
 		manyElement.addAll(newList);
 		assertEquals(2, manyElement.size());
@@ -98,7 +98,7 @@ public class SetTest {
 
 	@Test(expected = ArrayIndexOutOfBoundsException.class)
 	public void getWhenIndexOutOfBounds() {
-		empty.getElementAt(12);
+		empty.get(12);
 	}
 
 	@Test
